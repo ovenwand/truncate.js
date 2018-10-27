@@ -1,0 +1,83 @@
+{
+  "name": "truncate.js",
+  "version": "0.0.1",
+  "description": "Truncate text based on element size",
+  "main": "dist/truncate.js",
+  "module": "dist/trunacte.js",
+  "unpkg": "dist/truncate.min.js",
+  "scripts": {
+    "start": "npm run test",
+    "release": "bash release.sh",
+    "bundle": "rm -rf dist/* && npm run bundle:build",
+    "bundle:build": "cross-env NODE_ENV=production babel-node build.js",
+    "bundle:analyze": "npm run bundle:build -- --profile --analyze",
+    "lint": "eslint --ext .js src build.js",
+    "test": "karma start"
+  },
+  "repository": "git+https://github.com/Ovenwand/TruncateJS.git",
+  "author": "Sibbe Heijne",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ovenwand/TruncateJS/issues"
+  },
+  "homepage": "https://github.com/Ovenwand/TruncateJS#readme",
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
+    ]
+  },
+  "eslintConfig": {
+    "root": true,
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "ecmaVersion": 2017,
+      "sourceType": "module"
+    },
+    "env": {
+      "browser": true,
+      "node": true
+    },
+    "extends": [
+      "eslint:recommended"
+    ],
+    "rules": {
+      "indent": [
+        "error",
+        2
+      ],
+      "linebreak-style": [
+        "error",
+        "unix"
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ]
+    }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/node": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.4",
+    "cross-env": "^5.2.0",
+    "eslint": "^5.8.0",
+    "jasmine-core": "^3.3.0",
+    "karma": "^3.1.1",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.2",
+    "ora": "^3.0.0",
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "webpack": "^4.23.1",
+    "webpack-bundle-analyzer": "^3.0.3"
+  }
+}
