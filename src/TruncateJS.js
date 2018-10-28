@@ -1,6 +1,11 @@
 import Dom from './Dom';
 
-const DEFAULT_OPTIONS = {
+const ResizeObserver = (el, handler) => {
+  el.addEventListener('resize', handler);
+  return { destroy: () => el.removeEventListener('resize', handler) };
+};
+
+export const DEFAULT_OPTIONS = {
   callback: () => {
   },
   ellipsis: '\u2026',
@@ -10,16 +15,14 @@ const DEFAULT_OPTIONS = {
   watch: 'window',
   debug: false,
 };
-const FILTER_CHARACTERS = [' ', '\u3000', ',', ';', '.', '!', '?'];
-const CLASS_NAME_PREFIX = 'truncate-js';
-const CLASS_NAMES = {
+
+export const FILTER_CHARACTERS = [' ', '\u3000', ',', ';', '.', '!', '?'];
+
+export const CLASS_NAME_PREFIX = 'truncate-js';
+
+export const CLASS_NAMES = {
   keep: `${CLASS_NAME_PREFIX}-keep`,
   truncated: `${CLASS_NAME_PREFIX}-truncated`,
-};
-
-const ResizeObserver = (el, handler) => {
-  el.addEventListener('resize', handler);
-  return { destroy: () => el.removeEventListener('resize', handler) };
 };
 
 export default class TruncateJS {
@@ -88,6 +91,7 @@ export default class TruncateJS {
     // Add/remove the truncated class
     this.el.classList[isTruncated ? 'add' : 'remove'](CLASS_NAMES.truncated);
 
+    // Unwrap the children
     Dom.clear(this.el);
     Dom.contents(this.inner).forEach((node) => {
       Dom.append(this.el, node);

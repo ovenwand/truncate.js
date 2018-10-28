@@ -1,7 +1,7 @@
-import { resolve } from 'path';
-import webpack from 'webpack';
-import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+const { resolve } = require('path');
+const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 function webpackConfig(entry) {
   let webpackConfig = {
@@ -53,4 +53,4 @@ function webpackConfig(entry) {
   return webpackConfig;
 }
 
-export default webpackConfig;
+module.exports = webpackConfig;
