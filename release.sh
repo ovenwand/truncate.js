@@ -26,16 +26,17 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     npm run test || exit 1
 
     echo -e "\n${YELLOW}Building library...${NC}"
-    npm run build || exit 1
+    npm run bundle || exit 1
 
-#    echo -e "\n${YELLOW}Commiting...${NC}"
-#    git add -A
-#    git commit -m "build: ${VERSION}"
-#    npm version ${VERSION} --message "build: release %s"
+    echo -e "\n${YELLOW}Commiting...${NC}"
+    git add -A
+    git commit -m "build: ${VERSION}"
+    npm version ${VERSION} --message "build: release %s" || exit 1
 
-#    echo -e "\n${YELLOW}Publishing a new release...${NC}"
-#    get push origin v${VERSION}
-#    git push
+    echo -e "\n${YELLOW}Publishing a new release...${NC}"
+    git push origin v${VERSION}
+    git push
+    npm publish
 
-    echo -e "\n${GREEN}BUILD FINISHED WITH SUCCES!${NC}"
+    echo -e "\n${GREEN}BUILD FINISHED WITH SUCCESS!${NC}"
 fi
