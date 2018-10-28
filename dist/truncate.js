@@ -110,7 +110,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var TEXT_CONTENT_PROPS = ['nodeValue', 'textContent', 'innerText'];
 
 var Dom =
 /*#__PURE__*/
@@ -124,58 +124,20 @@ function () {
     value: function text(el, content) {
       // Set
       if (arguments.length >= 2) {
-        var _iteratorNormalCompletion = true;
-        var _didIteratorError = false;
-        var _iteratorError = undefined;
-
-        try {
-          for (var _iterator = Dom.TEXT_CONTENT_PROPS[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            var prop = _step.value;
-            el[prop] = content;
-          }
-        } catch (err) {
-          _didIteratorError = true;
-          _iteratorError = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion && _iterator.return != null) {
-              _iterator.return();
-            }
-          } finally {
-            if (_didIteratorError) {
-              throw _iteratorError;
-            }
-          }
+        for (var _i = 0; _i < TEXT_CONTENT_PROPS.length; _i++) {
+          var prop = TEXT_CONTENT_PROPS[_i];
+          el[prop] = content;
         }
 
         return content;
       } // Get
 
 
-      var _iteratorNormalCompletion2 = true;
-      var _didIteratorError2 = false;
-      var _iteratorError2 = undefined;
+      for (var _i2 = 0; _i2 < TEXT_CONTENT_PROPS.length; _i2++) {
+        var _prop = TEXT_CONTENT_PROPS[_i2];
 
-      try {
-        for (var _iterator2 = Dom.TEXT_CONTENT_PROPS[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-          var _prop = _step2.value;
-
-          if (typeof el[_prop] === 'string') {
-            return el[_prop];
-          }
-        }
-      } catch (err) {
-        _didIteratorError2 = true;
-        _iteratorError2 = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-            _iterator2.return();
-          }
-        } finally {
-          if (_didIteratorError2) {
-            throw _iteratorError2;
-          }
+        if (typeof el[_prop] === 'string') {
+          return el[_prop];
         }
       }
 
@@ -230,8 +192,8 @@ function () {
       var arr = ['padding-bottom', 'padding-top'];
       var padding = 0;
 
-      for (var _i = 0; _i < arr.length; _i++) {
-        var prop = arr[_i];
+      for (var _i3 = 0; _i3 < arr.length; _i3++) {
+        var prop = arr[_i3];
         padding += Dom.css(el, prop, true);
       }
 
@@ -275,14 +237,16 @@ function () {
   return Dom;
 }();
 
-_defineProperty(Dom, "TEXT_CONTENT_PROPS", ['nodeValue', 'textContent', 'innerText']);
-
 
 // CONCATENATED MODULE: ./src/TruncateJS.js
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEFAULT_OPTIONS", function() { return DEFAULT_OPTIONS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FILTER_CHARACTERS", function() { return FILTER_CHARACTERS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLASS_NAME_PREFIX", function() { return CLASS_NAME_PREFIX; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLASS_NAMES", function() { return CLASS_NAMES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TruncateJS_TruncateJS; });
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { TruncateJS_defineProperty(target, key, source[key]); }); } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
-function TruncateJS_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function TruncateJS_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -290,6 +254,16 @@ function TruncateJS_defineProperties(target, props) { for (var i = 0; i < props.
 
 function TruncateJS_createClass(Constructor, protoProps, staticProps) { if (protoProps) TruncateJS_defineProperties(Constructor.prototype, protoProps); if (staticProps) TruncateJS_defineProperties(Constructor, staticProps); return Constructor; }
 
+
+
+var ResizeObserver = function ResizeObserver(el, handler) {
+  el.addEventListener('resize', handler);
+  return {
+    destroy: function destroy() {
+      return el.removeEventListener('resize', handler);
+    }
+  };
+};
 
 var DEFAULT_OPTIONS = {
   callback: function callback() {},
@@ -305,15 +279,6 @@ var CLASS_NAME_PREFIX = 'truncate-js';
 var CLASS_NAMES = {
   keep: "".concat(CLASS_NAME_PREFIX, "-keep"),
   truncated: "".concat(CLASS_NAME_PREFIX, "-truncated")
-};
-
-var ResizeObserver = function ResizeObserver(el, handler) {
-  el.addEventListener('resize', handler);
-  return {
-    destroy: function destroy() {
-      return el.removeEventListener('resize', handler);
-    }
-  };
 };
 
 var TruncateJS_TruncateJS =
@@ -389,7 +354,8 @@ function () {
       } // Add/remove the truncated class
 
 
-      this.el.classList[isTruncated ? 'add' : 'remove'](CLASS_NAMES.truncated);
+      this.el.classList[isTruncated ? 'add' : 'remove'](CLASS_NAMES.truncated); // Unwrap the children
+
       Dom.clear(this.el);
       Dom.contents(this.inner).forEach(function (node) {
         Dom.append(_this.el, node);
