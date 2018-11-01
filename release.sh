@@ -36,7 +36,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo -e "\n${YELLOW}Publishing a new release...${NC}"
     git push origin v${VERSION}
     git push
-    npm publish
+    npm publish --access public
 
     echo -e "\n${GREEN}BUILD FINISHED WITH SUCCESS!${NC}"
 fi
