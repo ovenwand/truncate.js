@@ -1,6 +1,6 @@
 {
   "name": "@ovenwand/truncate.js",
-  "version": "1.0.0-alpha",
+  "version": "1.0.0-beta",
   "description": "Truncate text based on element size",
   "main": "dist/truncate.js",
   "module": "dist/trunacte.js",
