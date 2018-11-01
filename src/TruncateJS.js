@@ -105,11 +105,14 @@ export default class TruncateJS {
     return isTruncated;
   }
 
-  restore() {
+  restore(restoreContent = true) {
     this._unwatch();
 
-    Dom.clear(this.el);
-    this.originalContent.forEach((n) => Dom.append(this.el, n));
+    if (restoreContent) {
+      Dom.clear(this.el);
+      this.originalContent.forEach((n) => Dom.append(this.el, n));
+    }
+
     this.el.setAttribute('style', this.originalStyles || '');
     this.el.classList.remove(CLASS_NAMES.truncated);
   }
