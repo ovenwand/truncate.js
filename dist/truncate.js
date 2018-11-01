@@ -373,12 +373,17 @@ function () {
     value: function restore() {
       var _this2 = this;
 
+      var restoreContent = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
       this._unwatch();
 
-      Dom.clear(this.el);
-      this.originalContent.forEach(function (n) {
-        return Dom.append(_this2.el, n);
-      });
+      if (restoreContent) {
+        Dom.clear(this.el);
+        this.originalContent.forEach(function (n) {
+          return Dom.append(_this2.el, n);
+        });
+      }
+
       this.el.setAttribute('style', this.originalStyles || '');
       this.el.classList.remove(CLASS_NAMES.truncated);
     }
