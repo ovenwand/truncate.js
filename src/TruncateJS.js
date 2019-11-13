@@ -348,12 +348,14 @@ export default class TruncateJS {
   }
 
   _addEllipsis(str) {
+    let _str;
+
     while (FILTER_CHARACTERS.includes(str.slice(-1))) {
-      str = str.slice(0, -1);
+      _str = str.slice(0, -1);
     }
 
-    str += Dom.text(this.$options.ellipsis);
+    _str += Dom.text(this.$options.ellipsis);
 
-    return str;
+    return _str;
   }
 }

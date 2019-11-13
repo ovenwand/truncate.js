@@ -20,7 +20,7 @@ function createElement(setStyles = true) {
     Dom.remove(el);
   }
 
-  const el = document.createElement('div');
+  el = document.createElement('div');
 
   if (setStyles) {
     Dom.style(el, {
