@@ -1,0 +1,33 @@
+version: 2.1
+
+orbs:
+  sonarcloud: sonarsource/sonarcloud@1.0.1
+
+jobs:
+  test:
+    docker:
+      - image: 'circleci/node:lts'
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+
+      # install dependencies
+      - run: yarn install
+
+      # run sonar-scanner
+      - sonarcloud/scan
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+workflows:
+  main:
+    jobs:
+      - test:
+          context: SonarCloud
