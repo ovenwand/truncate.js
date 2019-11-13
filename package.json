@@ -5,84 +5,41 @@
   "main": "dist/truncate.js",
   "module": "dist/trunacte.js",
   "unpkg": "dist/truncate.min.js",
-  "scripts": {
-    "start": "npm run test:watch",
-    "release": "bash release.sh",
-    "bundle": "rm -rf dist/* && npm run bundle:build",
-    "bundle:build": "cross-env NODE_ENV=production babel-node build.js",
-    "bundle:analyze": "npm run bundle:build -- --profile --analyze",
-    "lint": "eslint --ext .js src build.js",
-    "test": "karma start",
-    "test:watch": "npm run test -- --auto-watch --no-single-run"
-  },
   "repository": "git+https://github.com/Ovenwand/TruncateJS.git",
-  "author": "Sibbe Heijne",
-  "license": "ISC",
+  "author": "Sibbe Heijne <sibbe@ovenwand.com>",
+  "license": "WTFPL",
   "bugs": {
     "url": "https://github.com/Ovenwand/TruncateJS/issues"
   },
   "homepage": "https://github.com/Ovenwand/TruncateJS#readme",
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ],
-    "plugins": [
-      "@babel/plugin-proposal-class-properties"
-    ]
-  },
-  "eslintConfig": {
-    "root": true,
-    "parser": "babel-eslint",
-    "parserOptions": {
-      "ecmaVersion": 2017,
-      "sourceType": "module"
-    },
-    "env": {
-      "browser": true,
-      "node": true,
-      "jasmine": true,
-      "es6": true
-    },
-    "extends": [
-      "eslint:recommended"
-    ],
-    "rules": {
-      "indent": [
-        "error",
-        2
-      ],
-      "linebreak-style": [
-        "error",
-        "unix"
-      ],
-      "quotes": [
-        "error",
-        "single"
-      ],
-      "semi": [
-        "error",
-        "always"
-      ]
-    }
+  "scripts": {
+    "start": "yarn test:watch",
+    "release": "bash release.sh",
+    "bundle": "rm -rf dist/* && yarn bundle:build",
+    "bundle:build": "cross-env NODE_ENV=production babel-node build.js",
+    "bundle:analyze": "yarn bundle:build --profile --analyze",
+    "lint": "eslint --ext .js src build.js",
+    "test": "karma start",
+    "test:watch": "yarn test --auto-watch --no-single-run"
   },
   "devDependencies": {
-    "@babel/core": "^7.1.2",
-    "@babel/node": "^7.0.0",
-    "@babel/plugin-proposal-class-properties": "^7.1.0",
-    "@babel/preset-env": "^7.1.0",
-    "babel-eslint": "^10.0.1",
-    "babel-loader": "^8.0.4",
-    "cross-env": "^5.2.0",
-    "eslint": "^5.8.0",
-    "jasmine-core": "^3.3.0",
-    "karma": "^3.1.1",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-coverage": "^1.1.2",
-    "karma-jasmine": "^1.1.2",
-    "karma-webpack": "^3.0.5",
-    "ora": "^3.0.0",
-    "uglifyjs-webpack-plugin": "^2.0.1",
-    "webpack": "^4.23.1",
-    "webpack-bundle-analyzer": "^3.0.3"
+    "@babel/core": "^7.7.2",
+    "@babel/node": "^7.7.0",
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
+    "cross-env": "^6.0.3",
+    "eslint": "^6.6.0",
+    "jasmine-core": "^3.5.0",
+    "karma": "^4.4.1",
+    "karma-coverage": "^2.0.1",
+    "karma-jasmine": "^2.0.1",
+    "karma-opera-launcher": "^1.0.0",
+    "karma-webpack": "^4.0.2",
+    "ora": "^4.0.3",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.41.2",
+    "webpack-bundle-analyzer": "^3.6.0"
   }
 }
